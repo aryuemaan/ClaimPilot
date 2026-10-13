@@ -1,0 +1,13 @@
+# Tested together on Python 3.12 / 3.13. ADK moves fast, so it is pinned exactly.
+google-adk==2.11.0
+google-genai==2.30.0
+google-cloud-firestore==2.34.1
+google-cloud-storage==3.17.0
+fastapi==0.141.1
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+python-dotenv==1.2.4
+pillow==12.3.0
+pillow-heif==1.8.1
+reportlab==5.0.1
+pydantic==2.14.1

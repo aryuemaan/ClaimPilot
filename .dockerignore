@@ -1,0 +1,13 @@
+**/node_modules
+**/__pycache__
+**/*.pyc
+**/.venv
+**/venv
+backend/data
+backend/tests
+frontend/dist
+.env
+.git
+docs
+*.zip
+sample-data/kits

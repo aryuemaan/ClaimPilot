@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk Variable", "Noto Sans Telugu", "Noto Sans Devanagari", system-ui, sans-serif;
+
+  --color-ink: #14212b;
+  --color-ink-2: #3a4a53;
+  --color-muted: #66767e;
+  --color-paper: #f3f5f4;
+  --color-surface: #ffffff;
+  --color-line: #dde4e1;
+  --color-line-strong: #c3cdc9;
+
+  --color-go: #0b6e4f;
+  --color-go-ink: #08543c;
+  --color-go-tint: #e2f1ea;
+
+  --color-amber: #a86e00;
+  --color-amber-tint: #fff2cc;
+
+  --color-stop: #c2362e;
+  --color-stop-ink: #9b2a23;
+  --color-stop-tint: #fbe8e6;
+
+  --color-sign: #f2c230;
+  --color-night: #10191f;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-feature-settings: "ss01";
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-go);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
+
+/* Recording pulse on the microphone button */
+@keyframes ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(194 54 46 / 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 22px rgb(194 54 46 / 0);
+  }
+}
+.recording-ring {
+  animation: ring 1.3s ease-out infinite;
+}
+
+/* The decision stamp lands once, when the adjuster decides */
+@keyframes stamp-in {
+  0% {
+    transform: scale(1.8) rotate(-14deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.94) rotate(-7deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-7deg);
+    opacity: 1;
+  }
+}
+.stamp-in {
+  animation: stamp-in 420ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+.bar-indeterminate {
+  animation: indeterminate 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recording-ring,
+  .stamp-in,
+  .bar-indeterminate,
+  .animate-spin,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
