@@ -3,12 +3,15 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' || {
-  echo "ClaimPilot needs Python 3.10+ (3.12 recommended). Found: $(python3 --version)" >&2; exit 1; }
+# Change "python3" to "python" or "py" if needed based on how your new Python is installed
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+
+$PYTHON_BIN -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' || {
+  echo "ClaimPilot needs Python 3.10+ (3.12 recommended). Found: $($PYTHON_BIN --version)" >&2; exit 1; }
 
 if [[ ! -d backend/.venv ]]; then
   echo "==> Creating Python virtualenv"
-  python3 -m venv backend/.venv
+  $PYTHON_BIN -m venv backend/.venv
 fi
 source backend/.venv/bin/activate
 echo "==> Installing Python packages"
@@ -22,7 +25,7 @@ fi
 
 [[ -f .env ]] || cp .env.example .env
 echo "==> Checking configuration"
-(cd backend && python -m app.doctor) || true
+(cd backend && $PYTHON_BIN -m app.doctor) || true
 echo
 echo "==> ClaimPilot running at http://localhost:8080  (customer app: /claim, console: /console)"
 cd backend && exec uvicorn app.main:app --host 0.0.0.0 --port 8080
