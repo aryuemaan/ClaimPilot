@@ -58,7 +58,7 @@ A human adjuster gets a one-page brief and decides with one click. The customer 
 
 ---
 
-## 2. Run it on your laptop
+## 2. Run it on laptop
 
 ### Prerequisites
 
